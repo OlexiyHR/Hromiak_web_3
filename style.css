@@ -1,0 +1,277 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #d3d3d3;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding: 5px 15px;
+    width: 100%;
+}
+
+.box > div {
+    background-color: #ffffff;
+    border-radius: 5px;
+    width: auto;
+    align-self: flex-start;
+    flex-grow: 1;
+    height: auto;
+}
+
+.Buying{
+    min-width:380px;
+}
+
+.Statistics {
+    min-width:150px;
+}
+
+button {
+    border-radius: 5px;
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.4);
+    position: relative;
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid gray;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.input-container {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+}
+
+.input-container input, .input-container button {
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.input-container input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 70%;
+    padding: 10px;
+    height:36px;
+}
+
+.input-container button {
+    background-color: #007bff;
+    color: white;
+    width: 30%;
+    height:32px;
+ }
+
+.input-container button:hover {
+    background-color: #0056b3;
+}
+
+.product1, .product2 {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+.product1 {
+    justify-content: space-between;
+}
+
+.product2 {
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.product-name {
+    text-decoration: line-through;
+    flex: 1;
+}
+
+.counter {
+    background-color: #d3d3d3;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.red-circle, .pale-red {
+    background-color: red;
+    color: white;
+    border-radius: 100%;
+    position: absolute;
+    right: 55%;
+}
+
+.pale-red {
+    opacity: 0.5;
+}
+
+.green-circle {
+    background-color: green;
+    color: white;
+    border-radius: 100%;
+    position: absolute;
+    left: 55%;
+}
+
+.button.white-rectengular {
+    margin-left: auto;
+    height: 10%;
+}
+
+.red-square {
+    background-color: red;
+    color: white;
+    width: 40px;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+
+}
+
+section {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.product-item, .product-item1 {
+    background-color: rgba(211, 211, 211, 0.8);
+    display: inline-block;
+    height: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    line-height: 25px;
+    vertical-align: middle;
+}
+
+.product-item1 {
+    text-decoration: line-through;
+}
+
+.amount, .amount1 {
+    background-color: darkorange;
+    border-radius: 10px;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    line-height: 20px;
+    margin: auto;
+    vertical-align: middle;
+}
+
+.amount1 {
+    text-decoration: line-through;
+}
+
+.badge {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #4B0082;
+    color: white;
+    padding: 5px 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: all 2s ease;
+    cursor: pointer;
+}
+
+.badge-text {
+    padding: 5px;
+}
+
+.badge-content {
+    display: none;
+    padding-top: 10px;
+}
+
+.badge:hover {
+    bottom: 20px;
+    background-color: blue;
+}
+
+.badge:hover .badge-content {
+    display: block;
+}
+
+.badge:hover .badge-text {
+    display: block;
+}
+
+.button::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rebeccapurple;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    white-space: nowrap;
+}
+
+.button:hover::after {
+    opacity: 1; 
+}
+
+@media print {
+    .badge {
+        background-color: white;
+        color: black;
+        padding: 5px 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border: 1px solid gray;
+    }
+
+    .badge-text {
+        display: none;
+    }
+
+    .badge-content {
+        display: block;
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .box {
+        flex-direction: column;
+    }
+
+    .box > div {
+        width: 100%;
+    }
+
+    .badge {
+        padding: 1px 2px;
+        font-size: 0.8em;
+    }
+
+    .badge-content {
+        padding-top: 5px;
+    }
+
+    .button::after {
+        font-size: 10px;
+    }
+}
