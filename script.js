@@ -3,6 +3,7 @@ const initialProducts = [
     'Сир',
     'Печиво'
 ];
+const addedProducts = initialProducts.slice();
 
 const productNameInput = document.getElementById('NewProduct');
 const addButton = document.getElementById('AddProduct');
@@ -20,24 +21,32 @@ addButton.addEventListener('click', () => {
         alert('Введіть назву товару');
         return;
     }
-
-    addProduct(productName);
-    productNameInput.value = '';
-    addButton.focus();
+    if (addedProducts.includes(productName)) {
+        alert("Don't input the same product");
+    } else {
+        addProduct(productName);
+        addedProducts.push(productName);
+        productNameInput.value = '';
+        productNameInput.focus();
+    }
 });
 
 productNameInput.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
     const productName = productNameInput.value.trim();
 
-    if (!productName) {
-      alert('Введіть назву товару');
-      return;
-    }
-
-    addProduct(productName);
-    productNameInput.value = '';
-    productNameInput.focus();
+      if (!productName) {
+          alert('Введіть назву товару');
+          return;
+      }
+      if (addedProducts.includes(productName)) {
+          alert("Don't input the same product");
+      } else {
+          addProduct(productName);
+          addedProducts.push(productName);
+          productNameInput.value = '';
+          productNameInput.focus();
+      }
   }  
 });
 
@@ -74,10 +83,16 @@ function addProduct(productName) {
 }
 
 function deleteProduct(event) {
-        const productDiv = event.target.closest('.product2');
-        productsList.removeChild(productDiv);
+    const productDiv = event.target.closest('.product2');
 
-        updateStatistics();
+    const productName = productDiv.querySelector('.product-name1').textContent;
+    const index = addedProducts.indexOf(productName);
+    if (index !== -1) {
+        addedProducts.splice(index, 1);
+    }
+    productsList.removeChild(productDiv);
+
+    updateStatistics();
 }
 
 function buyProduct(event){
@@ -163,7 +178,7 @@ function changeName (productNameSpan, updateStatisticsCallback){
 
         inputField.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                if(change) {
+                if (change) {
                     change = false;
                     finishInput(productNameSpan, inputField, updateStatisticsCallback);
                 }
